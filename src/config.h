@@ -49,7 +49,7 @@
 #define FLAG_REMOVE_EVO_ITEM 0x912  //Flag to toggle item removal after leveling up (set by the engine)
 #define FLAG_SHINY_CREATION 0x913 //Flag to cause next battle to be against a shiny Pokemon
 #define FLAG_AUTO_RUN 0x914 //Flag to enable auto-run (toggled by L-button). If this feature is used, L=A will not work. Comment out this line for it to work again.
-#define FLAG_RUNNING_ENABLED 0x82F //The player can only run if this flag is set. If commented, the player will start the game with running shoes.
+//#define FLAG_RUNNING_ENABLED 0x82F //The player can only run if this flag is set. If commented, the player will start the game with running shoes.
 #define FLAG_BIKE_TURBO_BOOST 0x91F //The bike moves extra fast if this flag is set or if the player holds B.
 #define FLAG_DISABLE_BAG 0x915 //The bag can't be used in-battle if this flag is set
 #define FLAG_MOVE_RELEARNER_IGNORE_LEVEL 0x916 //When set, the move relearner shows all level-up moves up to MAX_LEVEL
@@ -213,8 +213,8 @@ enum //These vars need to be one after the other (hence the enum)
 #define TUTORIAL_BATTLES //Comment this line to remove Oak's Tutorial
 #define TANOBY_RUINS_ENABLED //The Tanoby Ruins will be the only location Unown can be encountered
 #define ALTERING_CAVE_ENABLED //The Altering Cave from FR will work as intended provided the proper var is set
-#define SWEET_SCENT_ONLY_IN_CLEAR_WEATHER //Sweet Scent won't attract any wild Pokemon if the weather is not clear
-#define SWEET_SCENT_WILD_DOUBLE_BATTLES //Sweet Scent can be used (with respect to WILD_DOUBLE_RANDOM_CHANCE) to encounter two wild Pokemon at once
+//#define SWEET_SCENT_ONLY_IN_CLEAR_WEATHER //Sweet Scent won't attract any wild Pokemon if the weather is not clear
+//#define SWEET_SCENT_WILD_DOUBLE_BATTLES //Sweet Scent can be used (with respect to WILD_DOUBLE_RANDOM_CHANCE) to encounter two wild Pokemon at once
 #define OBEDIENCE_BY_BADGE_AMOUNT //Determines obedience based on the number of badges the Player has, rather than which badges the player has
 #define SAVE_BLOCK_EXPANSION //Commenting this requires you to also manually remove Save Expansion Hooks found in hooks. It will also break several features. DO NOT COMMENT OUT!
 #define SELECT_FROM_PC //Comment this out to remove select-from-pc hack
@@ -224,8 +224,8 @@ enum //These vars need to be one after the other (hence the enum)
 #define EXPAND_MOVESETS //Comment this out if you're using the Dynamic Pokemon Expansion repo to expand the movesets
 //#define FATHER_PASSES_TMS //Uncomment this out if you want TMs the father knows to be passed through breeding
 //#define INHERIT_MASTER_CHERISH_BALL  //Uncomment this if you want Master and Cherish balls to be inherited by daycare offspring
-//#define GIVEPOKEMON_CUSTOM_HACK //Alows custom Pokemon to be given by setting the second last byte of the givepokemon scripting command
-//#define GIVEPOKEMON_BALL_HACK //Allows Pokemon to be given with a custom ball by setting the last byte of the givepokemon scripting command
+#define GIVEPOKEMON_CUSTOM_HACK //Alows custom Pokemon to be given by setting the second last byte of the givepokemon scripting command
+#define GIVEPOKEMON_BALL_HACK //Allows Pokemon to be given with a custom ball by setting the last byte of the givepokemon scripting command
 #define FRLG_ROAMING //When a roaming Pokemon is created, it will either be a Entei, Raikou, or Suicune, depending on the player's starter choice
 #define CAN_RUN_IN_BUILDINGS //Comment this line out to prevent the player from running indoors.
 //#define NO_POISON_IN_OW //Uncommenting this line will stop Pokemon from taking Poison damage in the overworld.
@@ -247,7 +247,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define HIGH_PITCH_MEGA_PRIMAL_CRY //Mega Pokemon cries will be higher pitched. This is useful if you're using the base form cries for Mega Evolutions
 //#define SCROLLING_MULTICHOICE //Enables scrolling multichoice menus by using special 0x158.
 //#define REPLACE_SOME_VANILLA_SPECIALS //Replaces the sp07C, sp07D, sp09E, sp156, sp18B, & the Coins scripting commands with modified versions. Breaks vanilla FR compatability.
-#define REPLACE_ASH_WEATHER_WITH_WHITE_SANDSTORM //Replaces the falling ash weather effect with a white version of the sandstorm weather effect
+//#define REPLACE_ASH_WEATHER_WITH_WHITE_SANDSTORM //Replaces the falling ash weather effect with a white version of the sandstorm weather effect
 //#define ONLY_CHECK_ITEM_FOR_HM_USAGE //Allows HMs to be used if the HM is the Bag, and as long as there is a Pokemon in the party that can learn the HM
 //#define FADE_NPCS_IN_FOG //Blends the NPC palettes in foggy weather to create the illusion that they're under the fog. Breaks FR Pokemon Tower healing zone
 
