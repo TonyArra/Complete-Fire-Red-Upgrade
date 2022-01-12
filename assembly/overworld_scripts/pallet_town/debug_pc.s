@@ -18,6 +18,7 @@
 @ Enables Pokedex and Pokemon menus
 .global EventScript_DebugPc_Start
 EventScript_DebugPc_Start:
+         @ Required for PC to work START
 	special 0x187
 	compare 0x800D 0x2
 	if 0x1 _goto 0x81A7AE0
@@ -32,6 +33,8 @@ EventScript_DebugPc_Start:
 	msgbox 0x81A5075 MSG_KEEPOPEN
 	checkflag 0x1002
 	if 0x1 _goto 0x81A6998
+	@ Required for PC to work END
+
 	msgbox gText_DebugPc_Loading MSG_KEEPOPEN
 	setvar 0x4001 FIRST_SPECIES @ reset loop counter
 	call EventScript_DebugPc_GiveAllNormal
