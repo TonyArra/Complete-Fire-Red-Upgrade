@@ -1,6 +1,7 @@
 .thumb
 .align 2
 
+.include "../asm_defines.s"
 .include "../xse_commands.s"
 .include "../xse_defines.s"
 
@@ -28,21 +29,21 @@ EventScript_DebugPc_Start:
 	setvar 0x8004 0x0
 	special 0xD6
 	sound 0x4
-	msgbox 0x81A5075 0x4
+	msgbox 0x81A5075 MSG_KEEPOPEN
 	checkflag 0x1002
 	if 0x1 _goto 0x81A6998
-	msgbox gText_DebugPc_Loading 0x4
+	msgbox gText_DebugPc_Loading MSG_KEEPOPEN
 	setvar 0x4001 FIRST_SPECIES @ reset loop counter
 	call EventScript_DebugPc_GiveAllNormal
 	setvar 0x4001 FIRST_SPECIES @ reset loop counter
 	call EventScript_DebugPc_GiveAllShiny
-	goto EventScript_DebugPc_AccessPC
+	call EventScript_DebugPc_AccessPC
 
 EventScript_DebugPc_GiveAllNormal:
-	givepokemon 0x4001 0x5 0x44 0x0 0x0 0x0
+	givepokemon 0x4001 0x5 ITEM_RARE_CANDY 0x0 0x0 0x0
 	addvar 0x4001 0x1
 	compare 0x4001 LAST_SPECIES
-	if 0x3 _goto EventScript_DebugPc_GiveAllNormal
+	goto_if lessorequal EventScript_DebugPc_GiveAllNormal
 	return
 
 EventScript_DebugPc_GiveAllShiny:
@@ -61,7 +62,7 @@ EventScript_DebugPc_GiveAllShiny:
 	givepokemon 0x4001 0x5 0x44 0x0 0x1 0x0
 	addvar 0x4001 0x1
 	compare 0x4001 LAST_SPECIES
-	if 0x3 _goto EventScript_DebugPc_GiveAllShiny
+	goto_if lessorequal EventScript_DebugPc_GiveAllShiny
 	return
 
 EventScript_DebugPc_AccessPC:
@@ -73,3 +74,4 @@ EventScript_DebugPc_AccessPC:
 	special 0x106
 	waitstate
 	goto 0x81A69A8
+	return
