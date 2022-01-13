@@ -1,1 +1,3 @@
+@ Pallet Town
 sign 4 1 1 EventScript_DebugPc_Start
+map 4 1 gMapScripts_PlayerRoom_Start
