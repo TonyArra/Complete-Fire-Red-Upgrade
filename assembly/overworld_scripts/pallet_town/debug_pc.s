@@ -13,7 +13,7 @@
 @ Last species number to give at PC
 .equ LAST_SPECIES, 0x22
 
-@ Add script to PC in player's room
+@ Add script to PC in players room
 @ Gives all normal and shiny custom Pokemon
 @ Enables Pokedex and Pokemon menus
 .global EventScript_DebugPc_Start
