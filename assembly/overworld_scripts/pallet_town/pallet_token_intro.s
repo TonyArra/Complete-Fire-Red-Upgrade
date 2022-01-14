@@ -7,7 +7,7 @@
 @ Script triggered when exiting Pallet Town for the first time (two tiles)
 @ Introduce Team Token and the Professor
 
-@ People events
+@ Person events
 .equ PERSON_PROFESSOR, 0x3
 .equ PERSON_TOKEN_GRUNT, 0x4
 
@@ -31,7 +31,7 @@ EventScript_PalletTokenIntro_Start:
   checkflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
   call_if NOT_SET PalletTokenIntro_MeetToken
   setflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
-  release
+  releaseall
   end
 
 PalletTokenIntro_MeetToken:
@@ -45,6 +45,9 @@ PalletTokenIntro_Move_Grunt_In:
   .byte face_player
   .byte end_m
 
+@ This script was mostly taken from the game with hex replaced by vars.
+@ Kept the logic for splitting the behavior based on which of the two tiles
+@ the player is standing on.
 PalletTokenIntro_MeetProfessor:
   setvar 0x8004 0x0
   setvar 0x8005 0x2
@@ -56,13 +59,49 @@ PalletTokenIntro_MeetProfessor:
   waitmsg
   pause 0x55
   closeonkeypress
+  applymovement PLAYER PalletTokenIntro_Move_Player_FaceDown
+  waitmovement 0x0
   sound SOUND_HIGH_PITCH_BEEP
+  applymovement PLAYER PalletTokenIntro_Move_Player_Exclamation
+  waitmovement 0x0
+  pause 0x1E
   showsprite PERSON_PROFESSOR
   compare EVENT_TILE LEFT_TILE
-  call_if TRUE EventScript_PalletTokenIntro_Professor_Tile0
+  call_if equal EventScript_PalletTokenIntro_Professor_Tile0
   compare EVENT_TILE RIGHT_TILE
-  call_if TRUE EventScript_PalletTokenIntro_Professor_Tile1
+  call_if equal EventScript_PalletTokenIntro_Professor_Tile1
+  pause 0x1E
+  msgbox gText_PalletTokenIntro_Professor_ComeWithMe MSG_KEEPOPEN
+  closeonkeypress
+  pause 0x1E
+  compare EVENT_TILE LEFT_TILE
+  call_if equal PalletTokenIntro_EventScript_Player_FollowProfessor0
+  compare EVENT_TILE RIGHT_TILE
+  call_if equal PalletTokenIntro_EventScript_Player_FollowProfessor1
+  @ Enter Lab
+  setdooropen 0x10 0xD
+  doorchange
+  applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Professor_InLab
+  applymovement PLAYER PalletTokenIntro_Move_Player_InLab
+  waitmovement 0x0
+  setdoorclosed 0x10 0xD
+  doorchange
+  setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1
+  clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+  setvar VAR_MAP_SCENE_PALLET_TOWN_OAK 0x1
+  setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
+  setflag FLAG_DONT_TRANSITION_MUSIC
+  warp 0x4 0x3 0xFF 0x6 0xC
+  waitstate
   return
+
+PalletTokenIntro_Move_Player_FaceDown:
+  .byte 0x2D @Face Down (Delayed)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_Move_Player_Exclamation:
+  .byte 0x62 @Exclamation Mark (!)
+  .byte 0xFE @End of Movements
 
 EventScript_PalletTokenIntro_Professor_Tile0:
   applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Professor_Tile0
@@ -95,4 +134,115 @@ PalletTokenIntro_Move_Professor_Tile1:
   .byte 0x13 @Step Right (Normal)
   .byte 0x11 @Step Up (Normal)
   .byte 0x11 @Step Up (Normal)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_EventScript_Player_FollowProfessor0:
+  applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Player_FollowProfessor0
+  applymovement MOVE_PLAYER PalletTokenIntro_Move_Professor_FollowProfessor0
+  waitmovement 0x0
+  return
+
+PalletTokenIntro_Move_Player_FollowProfessor0:
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x2E @Face Up (Delayed)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_Move_Professor_FollowProfessor0:
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_EventScript_Player_FollowProfessor1:
+  applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Player_FollowProfessor1
+  applymovement MOVE_PLAYER PalletTokenIntro_Move_Professor_FollowProfessor1
+  waitmovement 0x0
+  return
+
+PalletTokenIntro_Move_Player_FollowProfessor1:
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x2E @Face Up (Delayed)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_Move_Professor_FollowProfessor1:
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x12 @Step Left (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x10 @Step Down (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x13 @Step Right (Normal)
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_Move_Professor_InLab:
+  .byte 0x11 @Step Up (Normal)
+  .byte 0x60 @Hide
+  .byte 0xFE @End of Movements
+
+PalletTokenIntro_Move_Player_InLab:
+  .byte 0x13 @Step Right (Normal)
+  .byte 0x11 @Step Up (Normal)
+  .byte 0x60 @Hide
   .byte 0xFE @End of Movements
