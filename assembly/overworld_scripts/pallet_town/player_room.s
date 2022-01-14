@@ -4,6 +4,9 @@
 .include "../xse_defines.s"
 .include "../garticmon_defines.s"
 
+@ Map script that runs when starting a new game in the player room
+
+@ Person Events
 .equ PERSON_RIVAL, 0x1
 
 .global gMapScripts_PlayerRoom_Start
