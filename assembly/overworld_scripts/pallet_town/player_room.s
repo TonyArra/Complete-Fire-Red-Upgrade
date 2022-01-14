@@ -2,11 +2,9 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../garticmon_defines.s"
 
-.equ MAP_SCENE_PLAYERS_HOUSE, 0x4056
 .equ PERSON_RIVAL, 0x1
-.equ SONG_GAME_CORNER_1, 0x146
-.equ SONG_PALLET_TOWN, 0x12C
 
 .global gMapScripts_PlayerRoom_Start
 gMapScripts_PlayerRoom_Start:
@@ -29,6 +27,7 @@ PlayerRoom_EventScript_MeetRival:
   fadesong SONG_PALLET_TOWN
   msgbox gText_PlayerRoom_Player_Festival1 MSG_NORMAL
   msgbox gText_PlayerRoom_Player_Festival2 MSG_NORMAL
+  setflag FLAG_HIDE_RIVAL_IN_PLAYER_ROOM
   release
   end
 
@@ -64,5 +63,4 @@ PlayerRoom_Move_Rival_Out:
   .byte run_right
   .byte run_right
   .byte run_right
-  .byte set_invisible
   .byte end_m

@@ -1,0 +1,11 @@
+@ Vars
+
+@ Flags
+.equ FLAG_HIDE_RIVAL_IN_PLAYER_ROOM, 0x900
+
+@ Map Scenes
+.equ MAP_SCENE_PLAYERS_HOUSE, 0x4056
+
+@ Songs
+.equ SONG_GAME_CORNER_1, 0x146
+.equ SONG_PALLET_TOWN, 0x12C
