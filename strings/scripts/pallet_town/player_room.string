@@ -1,5 +1,11 @@
 #org @gText_PlayerRoom_Rival_WakeUp
-[PLAYER]...\p[PLAYER]...\pWake up, [PLAYER]...!!
+[GREEN][PLAYER]...\p[PLAYER]...\pWake up, [PLAYER]...!!
 
 #org @gText_PlayerRoom_Rival_Late
-Come on come on!\p Or we're gonna be late!
+[GREEN][RIVAL]: Come on come on!\p Or we're gonna be late!
+
+#org @gText_PlayerRoom_Player_Festival1
+[RED][PLAYER]: Late...?\pOh, right\pThe Millennial Art Festival is today.
+
+#org @gText_PlayerRoom_Player_Festival2
+[RED]Artists from all over Kanto will be\nthere.

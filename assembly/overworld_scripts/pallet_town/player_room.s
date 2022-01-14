@@ -27,6 +27,8 @@ PlayerRoom_EventScript_MeetRival:
   applymovement PERSON_RIVAL PlayerRoom_EventScript_RivalExits
   waitmovement 0x0
   fadesong SONG_PALLET_TOWN
+  msgbox gText_PlayerRoom_Player_Festival1 MSG_NORMAL
+  msgbox gText_PlayerRoom_Player_Festival2 MSG_NORMAL
   release
   end
 
