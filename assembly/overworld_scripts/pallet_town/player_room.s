@@ -12,11 +12,11 @@ gMapScripts_PlayerRoom_Start:
   .byte MAP_SCRIPT_TERMIN
 
 PlayerRoom_OnFrameTable:
-  levelscript MAP_SCENE_PLAYERS_HOUSE NOT_SET PlayerRoom_EventScript_MeetRival
+  levelscript VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F 0x0 PlayerRoom_EventScript_MeetRival
   .hword LEVEL_SCRIPT_TERMIN
 
 PlayerRoom_EventScript_MeetRival:
-  setvar MAP_SCENE_PLAYERS_HOUSE SET
+  setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F 0x1
   msgbox gText_PlayerRoom_Rival_WakeUp MSG_NORMAL
   playsong SONG_GAME_CORNER_1
   applymovement PERSON_RIVAL PlayerRoom_Move_Rival_In
