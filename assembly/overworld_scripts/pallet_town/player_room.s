@@ -19,11 +19,9 @@ PlayerRoom_EventScript_MeetRival:
   setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F 0x1
   msgbox gText_PlayerRoom_Rival_WakeUp MSG_NORMAL
   playsong SONG_GAME_CORNER_1
-  applymovement PERSON_RIVAL PlayerRoom_Move_Rival_In
-  waitmovement 0x0
+  call Rival_Enters
   msgbox gText_PlayerRoom_Rival_Late MSG_NORMAL
-  applymovement PERSON_RIVAL PlayerRoom_Move_Rival_Out
-  waitmovement 0x0
+  call Rival_Exits
   fadesong SONG_PALLET_TOWN
   msgbox gText_PlayerRoom_Player_Festival1 MSG_NORMAL
   msgbox gText_PlayerRoom_Player_Festival2 MSG_NORMAL
@@ -31,7 +29,20 @@ PlayerRoom_EventScript_MeetRival:
   release
   end
 
-PlayerRoom_Move_Rival_In:
+Rival_Enters:
+  applymovement PERSON_RIVAL Move_Rival_Enters
+  waitmovement 0x0
+  applymovement PERSON_RIVAL Move_Rival_Jump
+  waitmovement 0x0
+  sound SOUND_JUMP
+  applymovement PERSON_RIVAL Move_Rival_Jump
+  waitmovement 0x0
+  sound SOUND_JUMP
+  applymovement PERSON_RIVAL Move_Rival_Exclaim
+  waitmovement 0x0
+  return
+
+Move_Rival_Enters:
   .byte run_down
   .byte run_down
   .byte run_down
@@ -46,12 +57,22 @@ PlayerRoom_Move_Rival_In:
   .byte run_up
   .byte walk_left_onspot_fast
   .byte walk_left_onspot_fast
+  .byte end_m
+
+Move_Rival_Jump:
   .byte jump_onspot_left
-  .byte jump_onspot_left
+  .byte end_m
+
+Move_Rival_Exclaim:
   .byte say_double_exclaim
   .byte end_m
 
-PlayerRoom_Move_Rival_Out:
+Rival_Exits:
+  applymovement PERSON_RIVAL Move_Rival_Exits
+  waitmovement 0x0
+  return
+
+Move_Rival_Exits:
   .byte run_down
   .byte run_right
   .byte run_right
