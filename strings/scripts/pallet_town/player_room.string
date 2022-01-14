@@ -1,2 +1,5 @@
-#org @gText_PlayerRoom_WakeUp
+#org @gText_PlayerRoom_Rival_WakeUp
 [PLAYER]...\p[PLAYER]...\pWake up, [PLAYER]...!!
+
+#org @gText_PlayerRoom_Rival_Late
+Come on come on!\p Or we're gonna be late!
