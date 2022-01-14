@@ -98,12 +98,12 @@ MeetProfessor:
   return
 
 Move_Player_FaceDown:
-  .byte 0x2D @Face Down (Delayed)
-  .byte 0xFE @End of Movements
+  .byte walk_down_onspot_fastest
+  .byte end_m
 
 Move_Player_Exclamation:
-  .byte 0x62 @Exclamation Mark (!)
-  .byte 0xFE @End of Movements
+  .byte exclaim
+  .byte end_m
 
 Professor_Enters_Tile0:
   applymovement PERSON_PROFESSOR Move_Professor_Enters_Tile0
@@ -111,15 +111,15 @@ Professor_Enters_Tile0:
   return
 
 Move_Professor_Enters_Tile0:
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0xFE @End of Movements
+  .byte walk_up
+  .byte walk_up
+  .byte walk_right
+  .byte walk_up
+  .byte walk_up
+  .byte walk_right
+  .byte walk_up
+  .byte walk_up
+  .byte end_m
 
 Professor_Enters_Tile1:
   applymovement PERSON_PROFESSOR Move_Professor_Enters_Tile1
@@ -127,16 +127,16 @@ Professor_Enters_Tile1:
   return
 
 Move_Professor_Enters_Tile1:
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0xFE @End of Movements
+  .byte walk_right
+  .byte walk_up
+  .byte walk_up
+  .byte walk_right
+  .byte walk_up
+  .byte walk_up
+  .byte walk_right
+  .byte walk_up
+  .byte walk_up
+  .byte end_m
 
 Grunt_RunAway:
   applymovement PERSON_TOKEN_GRUNT Move_Grunt_RunAway
@@ -157,47 +157,47 @@ FollowProfessor_Tile0:
   return
 
 Move_Professor_FollowProfessor_Tile0:
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x2E @Face Up (Delayed)
-  .byte 0xFE @End of Movements
+  .byte walk_down
+  .byte walk_left
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_up_onspot_fastest
+  .byte end_m
 
 Move_Player_FollowProfessor_Tile0:
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0xFE @End of Movements
+  .byte walk_down
+  .byte walk_down
+  .byte walk_left
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte end_m
 
 FollowProfessor_Tile1:
   applymovement PERSON_PROFESSOR Move_Professor_FollowProfessor_Tile1
@@ -206,57 +206,57 @@ FollowProfessor_Tile1:
   return
 
 Move_Professor_FollowProfessor_Tile1:
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x2E @Face Up (Delayed)
-  .byte 0xFE @End of Movements
+  .byte walk_down
+  .byte walk_left
+  .byte walk_left
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_up_onspot_fastest
+  .byte end_m
 
 Move_Player_FollowProfessor_Tile1:
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x12 @Step Left (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x10 @Step Down (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x13 @Step Right (Normal)
-  .byte 0xFE @End of Movements
+  .byte walk_down
+  .byte walk_down
+  .byte walk_left
+  .byte walk_left
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte walk_right
+  .byte end_m
 
 Move_Professor_EnterLab:
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x60 @Hide
-  .byte 0xFE @End of Movements
+  .byte walk_up
+  .byte set_invisible
+  .byte end_m
 
 Move_Player_EnterLab:
-  .byte 0x13 @Step Right (Normal)
-  .byte 0x11 @Step Up (Normal)
-  .byte 0x60 @Hide
-  .byte 0xFE @End of Movements
+  .byte walk_right
+  .byte walk_up
+  .byte set_invisible
+  .byte end_m

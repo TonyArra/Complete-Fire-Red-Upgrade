@@ -32,12 +32,12 @@ PlayerRoom_EventScript_MeetRival:
 Rival_Enters:
   applymovement PERSON_RIVAL Move_Rival_Enters
   waitmovement 0x0
-  applymovement PERSON_RIVAL Move_Rival_Jump
-  waitmovement 0x0
   sound SOUND_JUMP
   applymovement PERSON_RIVAL Move_Rival_Jump
   waitmovement 0x0
   sound SOUND_JUMP
+  applymovement PERSON_RIVAL Move_Rival_Jump
+  waitmovement 0x0
   applymovement PERSON_RIVAL Move_Rival_Exclaim
   waitmovement 0x0
   return
