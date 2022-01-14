@@ -21,10 +21,10 @@ PlayerRoom_EventScript_MeetRival:
   setvar MAP_SCENE_PLAYERS_HOUSE SET
   msgbox gText_PlayerRoom_Rival_WakeUp MSG_NORMAL
   playsong SONG_GAME_CORNER_1
-  applymovement PERSON_RIVAL PlayerRoom_EventScript_RivalEnters
+  applymovement PERSON_RIVAL PlayerRoom_Move_Rival_In
   waitmovement 0x0
   msgbox gText_PlayerRoom_Rival_Late MSG_NORMAL
-  applymovement PERSON_RIVAL PlayerRoom_EventScript_RivalExits
+  applymovement PERSON_RIVAL PlayerRoom_Move_Rival_Out
   waitmovement 0x0
   fadesong SONG_PALLET_TOWN
   msgbox gText_PlayerRoom_Player_Festival1 MSG_NORMAL
@@ -32,7 +32,7 @@ PlayerRoom_EventScript_MeetRival:
   release
   end
 
-PlayerRoom_EventScript_RivalEnters:
+PlayerRoom_Move_Rival_In:
   .byte run_down
   .byte run_down
   .byte run_down
@@ -52,7 +52,7 @@ PlayerRoom_EventScript_RivalEnters:
   .byte say_double_exclaim
   .byte end_m
 
-PlayerRoom_EventScript_RivalExits:
+PlayerRoom_Move_Rival_Out:
   .byte run_down
   .byte run_right
   .byte run_right
