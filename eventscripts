@@ -1,3 +1,5 @@
 @ Pallet Town
+tile 3 0 0 EventScript_PalletTokenIntro_Start
+tile 3 0 1 EventScript_DebugPc_Start
 sign 4 1 1 EventScript_DebugPc_Start
 map 4 1 gMapScripts_PlayerRoom_Start
