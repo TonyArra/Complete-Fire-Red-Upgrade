@@ -37,6 +37,7 @@ EventScript_PalletTokenIntro_Start:
 PalletTokenIntro_MeetToken:
   applymovement PERSON_TOKEN_GRUNT PalletTokenIntro_Move_Grunt_In
   waitmovement 0x0
+  sound SOUND_INSERT_COIN
   msgbox gText_PalletTokenIntro_Grunt_HeyKids MSG_NORMAL
   call PalletTokenIntro_MeetProfessor
   return
@@ -71,6 +72,9 @@ PalletTokenIntro_MeetProfessor:
   compare EVENT_TILE RIGHT_TILE
   call_if equal EventScript_PalletTokenIntro_Professor_Tile1
   pause 0x1E
+  msgbox gText_PalletTokenIntro_Professor_Shoo MSG_NORMAL
+  call Grunt_RunAway
+  msgbox gText_PalletTokenIntro_Professor_BeCareful MSG_NORMAL
   msgbox gText_PalletTokenIntro_Professor_ComeWithMe MSG_KEEPOPEN
   closeonkeypress
   pause 0x1E
@@ -80,12 +84,10 @@ PalletTokenIntro_MeetProfessor:
   call_if equal PalletTokenIntro_EventScript_Player_FollowProfessor1
   @ Enter Lab
   setdooropen 0x10 0xD
-  doorchange
   applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Professor_InLab
   applymovement PLAYER PalletTokenIntro_Move_Player_InLab
   waitmovement 0x0
   setdoorclosed 0x10 0xD
-  doorchange
   setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1
   clearflag FLAG_HIDE_OAK_IN_HIS_LAB
   setvar VAR_MAP_SCENE_PALLET_TOWN_OAK 0x1
@@ -136,9 +138,21 @@ PalletTokenIntro_Move_Professor_Tile1:
   .byte 0x11 @Step Up (Normal)
   .byte 0xFE @End of Movements
 
+Grunt_RunAway:
+  applymovement PERSON_TOKEN_GRUNT Move_Grunt_RunAway
+  sound SOUND_FLEE
+  return
+
+Move_Grunt_RunAway:
+  .byte run_up
+  .byte run_up
+  .byte run_up
+  .byte run_up
+  .byte end_m
+
 PalletTokenIntro_EventScript_Player_FollowProfessor0:
   applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Player_FollowProfessor0
-  applymovement MOVE_PLAYER PalletTokenIntro_Move_Professor_FollowProfessor0
+  applymovement PLAYER PalletTokenIntro_Move_Professor_FollowProfessor0
   waitmovement 0x0
   return
 
@@ -187,7 +201,7 @@ PalletTokenIntro_Move_Professor_FollowProfessor0:
 
 PalletTokenIntro_EventScript_Player_FollowProfessor1:
   applymovement PERSON_PROFESSOR PalletTokenIntro_Move_Player_FollowProfessor1
-  applymovement MOVE_PLAYER PalletTokenIntro_Move_Professor_FollowProfessor1
+  applymovement PLAYER PalletTokenIntro_Move_Professor_FollowProfessor1
   waitmovement 0x0
   return
 

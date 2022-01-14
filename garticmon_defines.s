@@ -20,4 +20,6 @@
 
 @ Sounds
 @ See: https://www.pokecommunity.com/showpost.php?p=9705692&postcount=10
+.equ SOUND_FLEE, 0x11 
 .equ SOUND_HIGH_PITCH_BEEP, 0x15
+.equ SOUND_INSERT_COIN, 0x19
