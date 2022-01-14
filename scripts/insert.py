@@ -311,7 +311,7 @@ def main():
                         continue
                     if line.strip().startswith('#') or line.strip() == '':
                         continue
-
+ 
                     offset = int(line[:8], 16) - 0x08000000
                     try:
                         ReplaceBytes(rom, offset, line[9:].strip())
@@ -323,7 +323,7 @@ def main():
                             newNumber = int(newNumber, 16)
 
                         newNumber = str(hex(newNumber)).split('0x')[1]
-                        ReplaceBytes(rom, offset, newNumber)
+                        ReplaceBytes(rom, offset, newNumber) 
 
         # Do Special Inserts
         if os.path.isfile(SPECIAL_INSERTS) and os.path.isfile(SPECIAL_INSERTS_OUT):
