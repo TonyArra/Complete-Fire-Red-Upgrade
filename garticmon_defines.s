@@ -8,3 +8,7 @@
 @ Songs
 .equ SONG_GAME_CORNER_1, 0x146
 .equ SONG_PALLET_TOWN, 0x12C
+.equ SONG_OAKS_THEME, 0x12E
+
+@ Sounds
+.equ SOUND_HIGH_PITCH_BEEP, 0x15
