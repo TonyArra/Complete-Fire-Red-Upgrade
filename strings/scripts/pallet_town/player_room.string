@@ -5,7 +5,7 @@
 [GREEN][RIVAL]: Come on come on!\p Or we're gonna be late!
 
 #org @gText_PlayerRoom_Player_Festival1
-[ORANGE][PLAYER]: (Late...?\pOh, right\pThe Millennial Art Festival is today.)
+[ORANGE][PLAYER]: (Late...?)\p(Oh, right)\p(The Millennial Art Festival\n is today)
 
 #org @gText_PlayerRoom_Player_Festival2
 [ORANGE](Artists from all over Kanto will be\nthere.)
