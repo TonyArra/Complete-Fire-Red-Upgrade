@@ -4,29 +4,15 @@
 .include "../xse_defines.s"
 .include "../garticmon_defines.s"
 
-@ Script triggered when exiting Pallet Town for the first time (two tiles)
+@ Script triggered when exiting Pallet Town for the first time
 @ Introduce Team Token and the Professor
 
 @ Person events
 .equ PERSON_PROFESSOR, 0x3
 .equ PERSON_TOKEN_GRUNT, 0x4
 
-@ Tile that triggered script
-.equ EVENT_TILE, 0x4001
-.equ LEFT_TILE, 0x0
-.equ RIGHT_TILE, 0x1
-
-.global EventScript_PalletTokenIntro_Tile0
-EventScript_PalletTokenIntro_Tile0:
-  setvar EVENT_TILE LEFT_TILE
-  goto PalletTokenIntro_Start
-
-.global EventScript_PalletTokenIntro_Tile1
-EventScript_PalletTokenIntro_Tile1:
-  setvar EVENT_TILE RIGHT_TILE
-  goto PalletTokenIntro_Start
-
-PalletTokenIntro_Start:
+.global EventScript_PalletTokenIntro_Start
+EventScript_PalletTokenIntro_Start:
   lockall
   checkflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
   call_if NOT_SET MeetTokenGrunt
@@ -35,20 +21,11 @@ PalletTokenIntro_Start:
   end
 
 MeetTokenGrunt:
-  applymovement PERSON_TOKEN_GRUNT Move_Grunt_FacePlayer
-  waitmovement 0x0
   sound SOUND_INSERT_COIN
   msgbox gText_PalletTokenIntro_Grunt_HeyKids MSG_NORMAL
   call MeetProfessor
   return
 
-Move_Grunt_FacePlayer:
-  .byte face_player
-  .byte end_m
-
-@ This script was mostly taken from the game with hex replaced by vars.
-@ Kept the logic for splitting the behavior based on which of the two tiles
-@ the player is standing on.
 MeetProfessor:
   setvar 0x8004 0x0
   setvar 0x8005 0x2
@@ -67,10 +44,7 @@ MeetProfessor:
   waitmovement 0x0
   pause 0x1E
   showsprite PERSON_PROFESSOR
-  compare EVENT_TILE LEFT_TILE
-  call_if equal Professor_Enters_Tile0
-  compare EVENT_TILE RIGHT_TILE
-  call_if equal Professor_Enters_Tile1
+  call Professor_Enters
   pause 0x1E
   msgbox gText_PalletTokenIntro_Professor_Shoo MSG_NORMAL
   call Grunt_RunAway
@@ -78,10 +52,7 @@ MeetProfessor:
   msgbox gText_PalletTokenIntro_Professor_ComeWithMe MSG_KEEPOPEN
   closeonkeypress
   pause 0x1E
-  compare EVENT_TILE LEFT_TILE
-  call_if equal FollowProfessor_Tile0
-  compare EVENT_TILE RIGHT_TILE
-  call_if equal FollowProfessor_Tile1
+  call FollowProfessor
   @ Enter Lab
   setdooropen 0x10 0xD
   applymovement PERSON_PROFESSOR Move_Professor_EnterLab
@@ -105,29 +76,12 @@ Move_Player_Exclamation:
   .byte exclaim
   .byte end_m
 
-Professor_Enters_Tile0:
-  applymovement PERSON_PROFESSOR Move_Professor_Enters_Tile0
+Professor_Enters:
+  applymovement PERSON_PROFESSOR Move_Professor_Enters
   waitmovement 0x0
   return
 
-Move_Professor_Enters_Tile0:
-  .byte walk_up
-  .byte walk_up
-  .byte walk_right
-  .byte walk_up
-  .byte walk_up
-  .byte walk_right
-  .byte walk_up
-  .byte walk_up
-  .byte end_m
-
-Professor_Enters_Tile1:
-  applymovement PERSON_PROFESSOR Move_Professor_Enters_Tile1
-  waitmovement 0x0
-  return
-
-Move_Professor_Enters_Tile1:
-  .byte walk_right
+Move_Professor_Enters:
   .byte walk_up
   .byte walk_up
   .byte walk_right
@@ -150,13 +104,13 @@ Move_Grunt_RunAway:
   .byte run_up
   .byte end_m
 
-FollowProfessor_Tile0:
-  applymovement PERSON_PROFESSOR Move_Professor_FollowProfessor_Tile0
-  applymovement PLAYER Move_Player_FollowProfessor_Tile0
+FollowProfessor:
+  applymovement PERSON_PROFESSOR Move_Professor_FollowProfessor
+  applymovement PLAYER Move_Player_FollowProfessor
   waitmovement 0x0
   return
 
-Move_Professor_FollowProfessor_Tile0:
+Move_Professor_FollowProfessor:
   .byte walk_down
   .byte walk_left
   .byte walk_down
@@ -178,60 +132,9 @@ Move_Professor_FollowProfessor_Tile0:
   .byte walk_up_onspot_fastest
   .byte end_m
 
-Move_Player_FollowProfessor_Tile0:
+Move_Player_FollowProfessor:
   .byte walk_down
   .byte walk_down
-  .byte walk_left
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_right
-  .byte walk_right
-  .byte walk_right
-  .byte walk_right
-  .byte end_m
-
-FollowProfessor_Tile1:
-  applymovement PERSON_PROFESSOR Move_Professor_FollowProfessor_Tile1
-  applymovement PLAYER Move_Player_FollowProfessor_Tile1
-  waitmovement 0x0
-  return
-
-Move_Professor_FollowProfessor_Tile1:
-  .byte walk_down
-  .byte walk_left
-  .byte walk_left
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_down
-  .byte walk_right
-  .byte walk_right
-  .byte walk_right
-  .byte walk_right
-  .byte walk_right
-  .byte walk_up_onspot_fastest
-  .byte end_m
-
-Move_Player_FollowProfessor_Tile1:
-  .byte walk_down
-  .byte walk_down
-  .byte walk_left
   .byte walk_left
   .byte walk_down
   .byte walk_down
