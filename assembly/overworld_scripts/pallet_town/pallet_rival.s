@@ -12,9 +12,16 @@
 EventScript_PalletRival_Start:
   lock
   msgbox gText_PalletRival_Rival_MonkeyEars MSG_NORMAL
+  applymovement PERSON_RIVAL Move_Rival_FacePlayer
+  waitmovement 0x0
   applymovement PERSON_RIVAL Move_Rival_Smile
+  waitmovement 0x0
   release
   end
+
+Move_Rival_FacePlayer:
+  .byte walk_down_onspot_fastest
+  .byte end_m
 
 Move_Rival_Smile:
   .byte say_smile

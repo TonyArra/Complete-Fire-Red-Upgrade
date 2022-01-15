@@ -10,6 +10,7 @@
 @ Person events
 .equ PERSON_PROFESSOR, 0x3
 .equ PERSON_TOKEN_GRUNT, 0x4
+.equ PERSON_RIVAL, 0x5
 
 .global EventScript_PalletTokenIntro_Start
 EventScript_PalletTokenIntro_Start:
@@ -22,9 +23,15 @@ EventScript_PalletTokenIntro_Start:
 
 MeetTokenGrunt:
   sound SOUND_INSERT_COIN
+  applymovement Move_Rival_FaceUp
+  waitmovement 0x0
   msgbox gText_PalletTokenIntro_Grunt_HeyKids MSG_NORMAL
   call MeetProfessor
   return
+
+Move_Rival_FaceUp:
+  .byte walk_up_onspot_fastest
+  .byte end_m
 
 MeetProfessor:
   setvar 0x8004 0x0
