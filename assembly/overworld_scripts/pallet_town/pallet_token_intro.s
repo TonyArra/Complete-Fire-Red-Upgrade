@@ -17,7 +17,6 @@ EventScript_PalletTokenIntro_Start:
   lockall
   checkflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
   call_if NOT_SET MeetTokenGrunt
-  setflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
   releaseall
   end
 
@@ -44,10 +43,12 @@ MeetProfessor:
   waitmsg
   pause 0x55
   closeonkeypress
-  applymovement PLAYER Move_Player_FaceDown
+  applymovement PLAYER Move_FaceDown
+  applymovement PERSON_RIVAL Move_FaceDown
   waitmovement 0x0
   sound SOUND_HIGH_PITCH_BEEP
-  applymovement PLAYER Move_Player_Exclamation
+  applymovement PLAYER Move_Exclamation
+  applymovement PERSON_RIVAL Move_Exclamation
   waitmovement 0x0
   pause 0x1E
   showsprite PERSON_PROFESSOR
@@ -64,6 +65,7 @@ MeetProfessor:
   setdooropen 0x10 0xD
   applymovement PERSON_PROFESSOR Move_Professor_EnterLab
   applymovement PLAYER Move_Player_EnterLab
+  applymovement PERSON_RIVAL Move_Rival_EnterLab
   waitmovement 0x0
   setdoorclosed 0x10 0xD
   setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1
@@ -71,15 +73,16 @@ MeetProfessor:
   setvar VAR_MAP_SCENE_PALLET_TOWN_OAK 0x1
   setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
   setflag FLAG_DONT_TRANSITION_MUSIC
+  setflag FLAG_HIDE_RIVAL_IN_PALLET_TOWN
   warp 0x4 0x3 0xFF 0x6 0xC
   waitstate
   return
 
-Move_Player_FaceDown:
+Move_FaceDown:
   .byte walk_down_onspot_fastest
   .byte end_m
 
-Move_Player_Exclamation:
+Move_Exclamation:
   .byte exclaim
   .byte end_m
 
@@ -100,11 +103,14 @@ Move_Professor_Enters:
   .byte end_m
 
 Grunt_RunAway:
-  applymovement PERSON_TOKEN_GRUNT Move_Grunt_RunAway
   sound SOUND_FLEE
+  applymovement PERSON_TOKEN_GRUNT Move_Grunt_RunAway
+  waitmovement 0x0
+  setflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
   return
 
 Move_Grunt_RunAway:
+  .byte run_up
   .byte run_up
   .byte run_up
   .byte run_up
@@ -114,12 +120,12 @@ Move_Grunt_RunAway:
 FollowProfessor:
   applymovement PERSON_PROFESSOR Move_Professor_FollowProfessor
   applymovement PLAYER Move_Player_FollowProfessor
+  applymovement PERSON_RIVAL Move_Rival_FollowProfessor
   waitmovement 0x0
   return
 
 Move_Professor_FollowProfessor:
   .byte walk_down
-  .byte walk_left
   .byte walk_down
   .byte walk_down
   .byte walk_down
@@ -131,7 +137,6 @@ Move_Professor_FollowProfessor:
   .byte walk_down
   .byte walk_down
   .byte walk_down
-  .byte walk_right
   .byte walk_right
   .byte walk_right
   .byte walk_right
@@ -157,6 +162,26 @@ Move_Player_FollowProfessor:
   .byte walk_right
   .byte walk_right
   .byte walk_right
+  .byte end_m
+
+Move_Rival_FollowProfessor:
+  .byte walk_right
+  .byte walk_down
+  .byte walk_down
+  .byte walk_left
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_down
+  .byte walk_right
+  .byte walk_right
   .byte walk_right
   .byte end_m
 
@@ -166,6 +191,12 @@ Move_Professor_EnterLab:
   .byte end_m
 
 Move_Player_EnterLab:
+  .byte walk_right
+  .byte walk_up
+  .byte set_invisible
+  .byte end_m
+
+Move_Rival_EnterLab:
   .byte walk_right
   .byte walk_up
   .byte set_invisible

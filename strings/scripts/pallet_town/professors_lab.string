@@ -1,0 +1,11 @@
+#org @gText_ProfessorsLab_Rival_WhatGift
+[GREEN][RIVAL]: Grampa!\nWhat's the gift?!
+
+#org @gText_ProfessorsLab_Professor_Pokemon
+OAK: [RIVAL]?\nLet me think[.]\pOh, that's right, I told you to\ncome! Just wait!\pHere, [PLAYER].\pThere are three POK\eMON here.\pHaha!\pThe POK\eMON are held inside\nthese POK\e BALLS.\pWhen I was young, I was a serious\nPOK\eMON TRAINER.\pBut now, in my old age, I have\nonly these three left.\pYou can have one.\nGo on, choose!
+
+#org @gText_ProfessorsLab_Rival_NoFair
+[GREEN][RIVAL]: Hey! Grampa! No fair!\nWhat about me?
+
+#org @gText_ProfessorsLab_Professor_BePatient
+OAK: Be patient, [RIVAL].\nYou can have one, too!
