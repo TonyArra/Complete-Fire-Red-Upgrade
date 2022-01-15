@@ -23,7 +23,7 @@ EventScript_PalletTokenIntro_Start:
 
 MeetTokenGrunt:
   sound SOUND_INSERT_COIN
-  applymovement Move_Rival_FaceUp
+  applymovement PERSON_RIVAL Move_Rival_FaceUp
   waitmovement 0x0
   msgbox gText_PalletTokenIntro_Grunt_HeyKids MSG_NORMAL
   call MeetProfessor

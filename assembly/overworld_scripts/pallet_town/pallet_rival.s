@@ -11,11 +11,10 @@
 .global EventScript_PalletRival_Start
 EventScript_PalletRival_Start:
   lock
-  msgbox gText_PalletRival_Rival_MonkeyEars MSG_NORMAL
   applymovement PERSON_RIVAL Move_Rival_FacePlayer
   waitmovement 0x0
   applymovement PERSON_RIVAL Move_Rival_Smile
-  waitmovement 0x0
+  msgbox gText_PalletRival_Rival_MonkeyEars MSG_NORMAL
   release
   end
 
