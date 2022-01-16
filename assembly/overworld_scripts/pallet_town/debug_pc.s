@@ -13,12 +13,12 @@
 @ Last species number to give at PC
 .equ LAST_SPECIES, 0x22
 
-@ Add script to PC in player's room
+@ Add script to PC in players room
 @ Gives all normal and shiny custom Pokemon
 @ Enables Pokedex and Pokemon menus
 .global EventScript_DebugPc_Start
 EventScript_DebugPc_Start:
-         @ Required for PC to work START
+  @ Required for PC to work START
 	special 0x187
 	compare 0x800D 0x2
 	if 0x1 _goto 0x81A7AE0
@@ -34,13 +34,13 @@ EventScript_DebugPc_Start:
 	checkflag 0x1002
 	if 0x1 _goto 0x81A6998
 	@ Required for PC to work END
-
 	msgbox gText_DebugPc_Loading MSG_KEEPOPEN
 	setvar 0x4001 FIRST_SPECIES @ reset loop counter
 	call EventScript_DebugPc_GiveAllNormal
 	setvar 0x4001 FIRST_SPECIES @ reset loop counter
 	call EventScript_DebugPc_GiveAllShiny
 	call EventScript_DebugPc_AccessPC
+  end
 
 EventScript_DebugPc_GiveAllNormal:
 	givepokemon 0x4001 0x5 ITEM_RARE_CANDY 0x0 0x0 0x0
