@@ -8,13 +8,13 @@
 
 .equ PERSON_RIVAL, 0x5
 
-.global EventScript_PalletRival_Start
-EventScript_PalletRival_Start:
+.global EventScript_PalletTown_Person_Rival_Start
+EventScript_PalletTown_Person_Rival_Start:
   lock
   applymovement PERSON_RIVAL Move_Rival_FacePlayer
   waitmovement 0x0
   applymovement PERSON_RIVAL Move_Rival_Smile
-  msgbox gText_PalletRival_Rival_MonkeyEars MSG_NORMAL
+  msgbox gText_PalletTown_Person_Rival_LookAtHer MSG_NORMAL
   release
   end
 

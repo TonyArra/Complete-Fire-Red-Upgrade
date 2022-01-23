@@ -14,9 +14,14 @@
 
 .global EventScript_PalletTokenIntro_Start
 EventScript_PalletTokenIntro_Start:
-  lockall
   checkflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
-  call_if NOT_SET MeetTokenGrunt
+  call_if NOT_SET PalletTokenIntro_Start
+  end
+
+PalletTokenIntro_Start:
+  lockall
+  call MeetTokenGrunt
+  call MeetProfessor
   releaseall
   end
 
@@ -25,7 +30,7 @@ MeetTokenGrunt:
   applymovement PERSON_RIVAL Move_Rival_FaceUp
   waitmovement 0x0
   msgbox gText_PalletTokenIntro_Grunt_HeyKids MSG_NORMAL
-  call MeetProfessor
+  msgbox gText_PalletTokenIntro_Rival_NFT MSG_NORMAL
   return
 
 Move_Rival_FaceUp:
@@ -56,7 +61,6 @@ MeetProfessor:
   pause 0x1E
   msgbox gText_PalletTokenIntro_Professor_Shoo MSG_NORMAL
   call Grunt_RunAway
-  msgbox gText_PalletTokenIntro_Professor_BeCareful MSG_NORMAL
   msgbox gText_PalletTokenIntro_Professor_ComeWithMe MSG_KEEPOPEN
   closeonkeypress
   pause 0x1E
@@ -70,10 +74,11 @@ MeetProfessor:
   setdoorclosed 0x10 0xD
   setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1
   clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+  clearflag FLAG_HIDE_RIVAL_IN_LAB
   setvar VAR_MAP_SCENE_PALLET_TOWN_OAK 0x1
-  setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
+  hidesprite PERSON_PROFESSOR
   setflag FLAG_DONT_TRANSITION_MUSIC
-  setflag FLAG_HIDE_RIVAL_IN_PALLET_TOWN
+  hidesprite PERSON_RIVAL
   warp 0x4 0x3 0xFF 0x6 0xC
   waitstate
   return
@@ -106,7 +111,7 @@ Grunt_RunAway:
   sound SOUND_FLEE
   applymovement PERSON_TOKEN_GRUNT Move_Grunt_RunAway
   waitmovement 0x0
-  setflag FLAG_HIDE_ROUTE1_TOKEN_GRUNT
+  hidesprite PERSON_TOKEN_GRUNT
   return
 
 Move_Grunt_RunAway:
