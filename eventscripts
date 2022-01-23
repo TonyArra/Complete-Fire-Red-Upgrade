@@ -7,3 +7,6 @@ sign 4 1 1 EventScript_DebugPc_Start
 map 4 1 gMapScripts_PlayerRoom_Start
 map 4 3 gMapScripts_ProfessorsLab_Start
 npc 4 3 7 EventScript_PalletTown_Lab_Person_Rival_Start
+npc 4 3 4 EventScript_PalletTown_Lab_Item_PokeballLeft_Start
+npc 4 3 5 EventScript_PalletTown_Lab_Item_PokeballMiddle_Start
+npc 4 3 6 EventScript_PalletTown_Lab_Item_PokeballRight_Start
