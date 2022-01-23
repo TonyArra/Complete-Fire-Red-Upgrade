@@ -120,7 +120,9 @@ Rival_Exits:
   applymovement PERSON_RIVAL Move_Rival_Exits
   waitmovement 0x0
   sound SOUND_EXIT_ROOM
+  fadescreen FADEOUT_BLACK
   hidesprite PERSON_RIVAL
+  fadescreen FADEIN_BLACK
   return
 
 Move_Rival_Exits:
@@ -134,11 +136,6 @@ Move_Rival_Exits:
   .byte run_right
   .byte run_right
   .byte run_right
-  .byte run_right
-  .byte run_up
-  .byte run_up
-  .byte walk_left
-  .byte walk_left
   .byte end_m
 
 SetHealingPlaceToHome:
