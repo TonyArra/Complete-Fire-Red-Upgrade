@@ -1,13 +1,13 @@
-@ Vars
-@ See: /includes/constants/vars.h
+@; Vars
+@; See: /includes/constants/vars.h
 .equ VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 0x4025
 .equ VAR_MAP_SCENE_PALLET_TOWN_OAK, 0x4050
 .equ VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 0x4055
 .equ VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 0x4056
 .equ VAR_RUNTIME_CHANGEABLE, 0x5028
 
-@ Flags
-@ See: /includes/constants/flags.h
+@; Flags
+@; See: /includes/constants/flags.h
 .equ FLAG_HIDE_OAK_IN_HIS_LAB, 0x002B
 .equ FLAG_HIDE_OAK_IN_PALLET_TOWN, 0x002C
 .equ FLAG_HIDE_RIVAL_IN_LAB, 0x002D
@@ -24,16 +24,21 @@
 .equ FLAG_HIDE_RIVAL_IN_PALLET_TOWN, 0x1004
 .equ FLAG_ACCESSED_DEBUG_PC, 0x1005
 
-@ Songs
-@ See: https://www.pokecommunity.com/showpost.php?p=9705692&postcount=10
+@; Songs
+@; See: https://www.pokecommunity.com/showpost.php?p=9705692&postcount=10
 .equ SONG_PALLET_TOWN, 0x12C
 .equ SONG_OAKS_THEME, 0x12E
 .equ SONG_GAME_CORNER_1, 0x146
 
-@ Sounds
-@ See: https://www.pokecommunity.com/showpost.php?p=9705692&postcount=10
+@; Sounds
+@; See: https://www.pokecommunity.com/showpost.php?p=9705692&postcount=10
 .equ SOUND_DOOR_OPEN, 0x8
+.equ SOUND_EXIT_ROOM, 0x9
 .equ SOUND_JUMP, 0xA
 .equ SOUND_FLEE, 0x11
 .equ SOUND_HIGH_PITCH_BEEP, 0x15
 .equ SOUND_INSERT_COIN, 0x19
+
+@; CFRU Expanded Overworld Sprites
+.equ MALE_SLEEPING_SPRITE, 0x0200
+.equ FEMALE_SLEEPING_SPRITE, 0x0201

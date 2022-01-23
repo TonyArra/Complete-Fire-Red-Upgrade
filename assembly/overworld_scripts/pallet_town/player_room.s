@@ -4,14 +4,8 @@
 .include "../xse_defines.s"
 .include "../garticmon_defines.s"
 
-@ Map script that runs when starting a new game in the player room.
-@ Overrides all existing level scripts for this room
+@; Map script that runs when starting a new game in the player room.
 
-@ CFRU Expanded Overworld Sprites
-.equ MALE_SLEEPING_SPRITE, 0x0200
-.equ FEMALE_SLEEPING_SPRITE, 0x0201
-
-@ Person Events
 .equ PERSON_RIVAL, 0x1
 .equ PERSON_SLEEPING_PLAYER, 0x2
 
@@ -57,7 +51,6 @@ PlayerRoom_EventScript_MeetRival:
   msgbox gText_PlayerRoom_Rival_Late MSG_NORMAL
   call Rival_Exits
   fadesong SONG_PALLET_TOWN
-  hidesprite PERSON_RIVAL
   release
   end
 
@@ -126,6 +119,8 @@ Move_Player_WakeUp:
 Rival_Exits:
   applymovement PERSON_RIVAL Move_Rival_Exits
   waitmovement 0x0
+  sound SOUND_EXIT_ROOM
+  hidesprite PERSON_RIVAL
   return
 
 Move_Rival_Exits:
@@ -140,7 +135,10 @@ Move_Rival_Exits:
   .byte run_right
   .byte run_right
   .byte run_right
-  .byte run_right
+  .byte run_up
+  .byte run_up
+  .byte walk_left
+  .byte walk_left
   .byte end_m
 
 SetHealingPlaceToHome:
