@@ -61,6 +61,7 @@ SystemScript_FindItemMessage 081A67DD
 SystemScript_ObtainItem 08160450
 SystemScript_ObtainItemMessage 081A66AC
 SystemScript_PickedUpHiddenItem 081A685E
+SystemScript_NewGameSetFlags 08054B6C
 
 ##Wild -> The Wild
 TheWildString 080D7B78
