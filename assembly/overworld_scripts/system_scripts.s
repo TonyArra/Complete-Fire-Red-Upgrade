@@ -26,7 +26,7 @@ SystemScript_EnableAutoRun:
 	checksound
 	releaseall
 	end
-
+	
 .global SystemScript_DisableAutoRun
 SystemScript_DisableAutoRun:
 	lockall
@@ -49,7 +49,7 @@ SystemScript_EnableBikeTurboBoost:
 	checksound
 	releaseall
 	end
-
+	
 .global SystemScript_DisableBikeTurboBoost
 SystemScript_DisableBikeTurboBoost:
 	lockall
@@ -119,7 +119,7 @@ SystemScript_PoisonSurvial:
 	closeonkeypress
 	releaseall
 	end
-
+	
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .equ VAR_REPEL_STEP_COUNT, 0x4020
@@ -132,7 +132,7 @@ EventScript_BwRepelWoreOff:
 	compare LASTRESULT 1
 	if greaterorequal _goto AnotherRepel
 	goto EventScript_RepelWoreOff
-
+	
 AnotherRepel:
 	bufferitem 0x2 0x800E
 	msgboxsign
@@ -146,35 +146,35 @@ AnotherRepel:
 	compare 0x800E ITEM_MAX_REPEL
 	if equal _goto UseAnotherMaxRepel
 	goto EndScript
-
+	
 UseAnotherRepel:
 	removeitem ITEM_REPEL 1
 	setvar VAR_REPEL_STEP_COUNT 100
 	goto FinishNewRepel
-
+	
 UseAnotherSuperRepel:
 	removeitem ITEM_SUPER_REPEL 1
 	setvar VAR_REPEL_STEP_COUNT 200
 	goto FinishNewRepel
-
+	
 UseAnotherMaxRepel:
 	removeitem ITEM_MAX_REPEL 1
 	setvar VAR_REPEL_STEP_COUNT 250
 	goto FinishNewRepel
-
+	
 FinishNewRepel:
 	checksound
 	sound 0x29 @;Repel spray sound
 	msgboxsign
 	msgbox gText_UsedAnotherRepel MSG_SIGN
 	goto EndScript
-
+	
 EventScript_RepelWoreOff:
 	lockall
 	msgboxsign
 	msgbox gText_RepelWoreOff MSG_KEEPOPEN
 	closeonkeypress
-
+	
 EndScript:
 	releaseall
 	end
@@ -234,7 +234,7 @@ SystemScript_FindItemMessage:
 	if equal _call SystemScript_FindNormalItem
 	waitfanfare
 	waitmsg
-	msgbox 0x81A5218 MSG_KEEPOPEN
+	msgbox 0x81A5218 MSG_KEEPOPEN 
 	special SPECIAL_CLEAR_ITEM_SPRITE_AFTER_FIND_OBTAIN
 	return
 
@@ -292,7 +292,7 @@ ObtainedTMHM:
 ObtainedRegularItem:
 	preparemsg 0x81A51F6 @;Obtained the item!
 	return
-
+	
 ObtainedMultipleItemMsg:
 	buffernumber 0x0 0x8005
 	callasm TryAppendSOntoEndOfItemString
@@ -438,7 +438,7 @@ EventScript_RockClimbLeftWaitmovement:
 	compare LASTRESULT 0
 	if equal _goto EventScript_RockClimbLeftFinish
 	goto EventScript_RockClimbLeft
-
+	
 EventScript_RockClimbLeftUp:
 	sound 0x7C @Rock Smash
 	applymovement PLAYER m_RockClimbLeftUp
@@ -463,7 +463,7 @@ EventScript_RockClimbRightWaitmovement:
 	compare LASTRESULT 0
 	if equal _goto EventScript_RockClimbRightFinish
 	goto EventScript_RockClimbRight
-
+	
 EventScript_RockClimbRightUp:
 	sound 0x7C @Rock Smash
 	applymovement PLAYER m_RockClimbRightUp
@@ -488,7 +488,7 @@ EventScript_RockClimbLeftFinish:
 
 EventScript_RockClimbRightFinish:
 	applymovement PLAYER m_RockClimbRight
-
+	
 EventScript_RockClimbFinish:
 	waitmovement PLAYER
 	callasm StartPlayerMotion
@@ -618,7 +618,7 @@ EventScript_UseSurf_Ask:
 	callasm IsCurrentAreaSwampToVar
 	compare LASTRESULT 0x0
 	if notequal _goto EventScript_UseSurf_AskMurkyWater
-	msgbox 0x81A556E MSG_YESNO
+	msgbox 0x81A556E MSG_YESNO	
 EventScript_UseSurf_CheckAnswer:
 	compare LASTRESULT NO
 	if equal _goto EventScript_SurfEnd
@@ -634,7 +634,7 @@ EventScript_SurfEnd:
 	end
 
 EventScript_UseSurf_AskMurkyWater:
-	msgbox gText_WaterMurkyBrownUseSurf MSG_YESNO
+	msgbox gText_WaterMurkyBrownUseSurf MSG_YESNO	
 	goto EventScript_UseSurf_CheckAnswer
 
 .global EventScript_WaterDyedBlue
@@ -687,7 +687,7 @@ EventScript_UseDive_SkipAsk:
 	setanimation 0x0 0x8004
 	setanimation 0x1 1
 	doanimation FLDEFF_USE_DIVE
-	goto EventScript_EndDive
+	goto EventScript_EndDive	
 
 .global EventScript_UseDiveUnderwater
 EventScript_UseDiveUnderwater:
@@ -816,7 +816,7 @@ EventScript_HiddenGrottoForest_Reject:
 	msgboxnormal
 	release
 	end
-
+	
 EventScript_HiddenGrottoForest_Nowhere:
 	msgbox gText_FollowNarrowPathNowhere MSG_NORMAL
 	msgboxnormal
