@@ -1,11 +1,8 @@
+#org @gText_PlayerRoom_Player_Snore
+ZZzz[.]
+
 #org @gText_PlayerRoom_Rival_WakeUp
-[GREEN][PLAYER]...\p[PLAYER]...\pWake up, [PLAYER]...!!
+[GREEN][PLAYER][.]\p[PLAYER][.]\pWake up, [PLAYER][.]!!
 
 #org @gText_PlayerRoom_Rival_Late
-[GREEN][RIVAL]: Come on come on!\p Or we're gonna be late!
-
-#org @gText_PlayerRoom_Player_Festival1
-[ORANGE][PLAYER]: (Late...?)\p(Oh, right)\p(The Millennial Art Festival\n is today)
-
-#org @gText_PlayerRoom_Player_Festival2
-[ORANGE](Artists from all over Kanto will be\nthere.)
+[GREEN]Slimemantha: Come on, hurry up!\p Or we're gonna miss the festival!

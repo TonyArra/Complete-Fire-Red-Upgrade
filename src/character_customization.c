@@ -93,10 +93,21 @@ static const struct CharacterCustomizationPaletteSwitch sCharacterPalSwitchTable
 
 #else //Modify this
 	// create 255 OW tables
+	extern const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_PlayerSleepingMale;
+	extern const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_PlayerSleepingFemale;
+
+	// Garticmon overworld table
+	static NPCPtr sOverworldTable2[] =
+	{
+		&gEventObjectGraphicsInfo_PlayerSleepingMale,
+		&gEventObjectGraphicsInfo_PlayerSleepingFemale,
+	};
+
 	const struct EventObjectGraphicsInfo** const gOverworldTableSwitcher[255] =
 	{
 		(NPCPtr*) 0x839FDB0,
 		(NPCPtr*) 0x0,
+		sOverworldTable2,
 		// etc...
 		// please note that this method makes compatability with OW Manager challenging
 	};

@@ -61,6 +61,7 @@ SystemScript_FindItemMessage 081A67DD
 SystemScript_ObtainItem 08160450
 SystemScript_ObtainItemMessage 081A66AC
 SystemScript_PickedUpHiddenItem 081A685E
+SystemScript_NewGameSetFlags 08054B6C
 
 ##Wild -> The Wild
 TheWildString 080D7B78
@@ -150,6 +151,8 @@ Type_IconsTiles 08107DB0
 Type_IconsPal 08107D64
 TradeBallTiles 0826CDD4
 TradeBallPal 0826CDDC
+gEventObjectPic_PlayerSleepingMalePal 08409854
+gEventObjectPic_PlayerSleepingFemalePal 0840985C
 
 ##PC Selection BRM
 #ifdef SELECT_FROM_PC

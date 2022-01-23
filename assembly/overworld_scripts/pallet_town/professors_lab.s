@@ -15,10 +15,10 @@ gMapScripts_ProfessorsLab_Start:
   .byte MAP_SCRIPT_TERMIN
 
 ProfessorsLab_OnFrameTable:
-  levelscript VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1 PlayScene
+  levelscript VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x1 ProfessorsLab_StartFirstPokemonScene
   .hword LEVEL_SCRIPT_TERMIN
 
-PlayScene:
+ProfessorsLab_StartFirstPokemonScene:
   lockall
   textcolor 0x0
   applymovement PERSON_PROFESSOR Move_Professor_EnterLab
@@ -26,7 +26,7 @@ PlayScene:
   hidesprite PERSON_PROFESSOR
   movesprite2 PERSON_PROFESSOR 0x6 0x3
   spritebehave PERSON_PROFESSOR 0x8
-  clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+  showsprite PERSON_PROFESSOR
   applymovement PLAYER Move_Player_EnterLab
   applymovement PERSON_RIVAL Move_Rival_EnterLab
   waitmovement 0x0
@@ -41,8 +41,8 @@ PlayScene:
   pause 0x1E
   applymovement PERSON_RIVAL Move_Rival_WalkUp
   waitmovement 0x0
-  msgbox gText_ProfessorsLab_Rival_NoFair MSG_KEEPOPEN
-  msgbox gText_ProfessorsLab_Professor_BePatient MSG_KEEPOPEN
+  msgbox gText_ProfessorsLab_Rival_WeGetOurOwn MSG_KEEPOPEN
+  msgbox gText_ProfessorsLab_Professor_WithGreatPower MSG_KEEPOPEN
   setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB 0x2
   releaseall
   end
