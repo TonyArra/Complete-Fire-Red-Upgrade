@@ -4,6 +4,7 @@
 .include "../asm_defines.s"
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../garticmon_defines.s"
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -23,7 +24,7 @@ EventScript_DebugPc_Start:
 	compare 0x800D 0x2
 	if 0x1 _goto 0x81A7AE0
 	lockall
-	checkflag 0x841
+	checkflag FLAG_SYS_PC_STORAGE_DISABLED
 	if 0x1 _goto 0x81A698E
 	setvar 0x8004 0x1B
 	special 0x17D
@@ -31,7 +32,7 @@ EventScript_DebugPc_Start:
 	special 0xD6
 	sound 0x4
 	msgbox 0x81A5075 MSG_KEEPOPEN
-	checkflag 0x1002
+	checkflag FLAG_ACCESSED_DEBUG_PC
 	if 0x1 _goto 0x81A6998
 	@ Required for PC to work END
 	msgbox gText_DebugPc_Loading MSG_KEEPOPEN
@@ -69,9 +70,9 @@ EventScript_DebugPc_GiveAllShiny:
 	return
 
 EventScript_DebugPc_AccessPC:
-	setflag 0x1002
-	setflag 0x828 @ activate pokemon menu
-	setflag 0x829 @ activate pokedex menu
+	setflag FLAG_ACCESSED_DEBUG_PC
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_SYS_POKEDEX_GET
 	preparemsg 0x81A508A @"Which PC should be accessed?"
 	waitmsg
 	special 0x106
