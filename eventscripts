@@ -1,6 +1,8 @@
 @ Pallet Town
 tile 3 0 0 EventScript_PalletTokenIntro_Start
 npc 3 0 4 EventScript_PalletTown_Person_Rival_Start
+map 4 0 gMapScripts_PlayersHouseFloor1_Start
+npc 4 0 0 EventScript_Person_Mom_Start
 sign 4 1 1 EventScript_DebugPc_Start
 map 4 1 gMapScripts_PlayerRoom_Start
 map 4 3 gMapScripts_ProfessorsLab_Start
