@@ -151,6 +151,8 @@ Type_IconsTiles 08107DB0
 Type_IconsPal 08107D64
 TradeBallTiles 0826CDD4
 TradeBallPal 0826CDDC
+gEventObjectPic_PlayerSleepingMalePal 08409854
+gEventObjectPic_PlayerSleepingFemalePal 0840985C
 
 ##PC Selection BRM
 #ifdef SELECT_FROM_PC
